@@ -35,12 +35,10 @@ public abstract class BaseDao<T> {
   }
 
   public T get(Key<T> key) {
-    ofy().clear();
     return ofy().get(key);
   }
 
   public T get(Long id) {
-    ofy().clear();
     return ofy().get(clazz, id);
   }
 

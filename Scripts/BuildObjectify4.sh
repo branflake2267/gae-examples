@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WORKING_DIRECTORY=~/objectify-workspace
+WORKING_DIRECTORY=~/workspace-source/objectify
 
 if [ ! -d $WORKING_DIRECTORY ]; then
     mkdir $WORKING_DIRECTORY
