@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+ <ModulePrefs title="Include Page" author="Brandon Donnelson" author_email="branflake2267@gmail.com"
+  title_url="http://c.appengine-examples.com" description="Include Page" />
+ <UserPref name="url" display_name="URL" default_value=""/>
+ <Content type="html">
+    <![CDATA[
+
+    <script type="text/javascript">
+ 
+        var prefs = new gadgets.Prefs();
+
+        var e = document.createElement("div"); 
+        e.setAttribute("eid", eid); 
+        document.body.appendChild(e);
+              
+        function getPage() {      
+          var params = {};  
+          params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;  
+          var url = prefs.getString("url");
+          gadgets.io.makeRequest(url, response, params);
+        };
+        
+        function response(obj) {  
+          var s = obj.text.toString();
+          // s = s.replace(/(<a)/g, "<a target=\"_blank\"");
+          eval(s);
+        };
+  
+        gadgets.util.registerOnLoadHandler(getPage);
+
+    </script>
+
+    ]]>
+ </Content>
+</Module>
