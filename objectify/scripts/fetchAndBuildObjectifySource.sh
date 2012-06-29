@@ -11,18 +11,17 @@ cd $WORKING_DIRECTORY
 
 
 
-
 # get GAE
-curl http://googleappengine.googlecode.com/files/appengine-java-sdk-1.6.6.zip >> appengine-java-sdk-1.6.6.zip
+curl http://googleappengine.googlecode.com/files/appengine-java-sdk-1.7.0.zip >> appengine-java-sdk-1.7.0.zip
 
 # extract GAE
-unzip -o appengine-java-sdk-1.6.6.zip
+unzip -o appengine-java-sdk-1.7.0.zip
 
 # get GWT
-curl http://google-web-toolkit.googlecode.com/files/gwt-2.4.0.zip >> gwt-2.4.0.zip
+curl http://google-web-toolkit.googlecode.com/files/gwt-2.5.0.rc1.zip >> gwt-2.5.0.rc1.zip
 
 # extract GWT
-unzip -o gwt-2.4.0.zip
+unzip -o gwt-2.5.0.rc1.zip
 
 
 
