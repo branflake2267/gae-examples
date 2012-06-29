@@ -11,7 +11,6 @@
         var prefs = new gadgets.Prefs();
 
         var e = document.createElement("div"); 
-        e.setAttribute("eid", eid); 
         document.body.appendChild(e);
               
         function getPage() {      
