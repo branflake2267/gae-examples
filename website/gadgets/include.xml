@@ -9,23 +9,8 @@
     <script type="text/javascript">
  
         var prefs = new gadgets.Prefs();
-
-        var e = document.createElement("div"); 
-        document.body.appendChild(e);
-              
-        function getPage() {      
-          var params = {};  
-          params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;  
-          var url = prefs.getString("url");
-          gadgets.io.makeRequest(url, response, params);
-        };
-        
-        function response(obj) {  
-          var s = obj.text.toString();
-          e.innerHTML = s;
-        };
-  
-        gadgets.util.registerOnLoadHandler(getPage);
+        var url = prefs.getString("url");
+        window.location.href = url;
 
     </script>
 
