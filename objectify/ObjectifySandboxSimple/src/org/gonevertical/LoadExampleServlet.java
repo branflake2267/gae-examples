@@ -15,18 +15,34 @@ import com.googlecode.objectify.ObjectifyService;
 @SuppressWarnings("serial")
 public class LoadExampleServlet extends HttpServlet {
   
-  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    resp.setContentType("text/plain");
+  private HttpServletRequest request;
+  private HttpServletResponse response;
+  
+  /**
+   * Objectify Factory which registers the service and classes we need like Person.class
+   */
+  private Objectify ofy = OfyFactory.init();
+  
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    this.request = request;
+    this.response = response;
     
-    Objectify ofy = OfyFactory.init();
+    response.setContentType("text/plain");
     
+    example1();
+  }
+  
+  /**
+   * Load
+   */
+  private void example1() throws IOException  {
     Person person = new Person("Brandon");
     ofy.save().entities(person).now();
-    resp.getWriter().println("person=" + person);
+    response.getWriter().println("person=" + person);
     
     long id = person.getId();
     person = ofy.load().type(Person.class).id(id).get();
-    resp.getWriter().println("person=" + person);
+    response.getWriter().println("person=" + person);
   }
   
 }
