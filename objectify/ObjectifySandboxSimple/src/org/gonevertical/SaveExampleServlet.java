@@ -12,7 +12,6 @@ import org.gonevertical.entities.Person;
 import org.gonevertical.objectify.OfyFactory;
 
 import com.googlecode.objectify.Objectify;
-import com.googlecode.objectify.ObjectifyService;
 
 @SuppressWarnings("serial")
 public class SaveExampleServlet extends HttpServlet {
