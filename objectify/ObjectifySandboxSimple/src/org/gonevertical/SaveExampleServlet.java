@@ -12,6 +12,13 @@ import org.gonevertical.entities.Person;
 import org.gonevertical.entities.PhoneNumber;
 import org.gonevertical.objectify.OfyFactory;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
 import com.googlecode.objectify.Objectify;
 
 @SuppressWarnings("serial")
@@ -81,11 +88,13 @@ public class SaveExampleServlet extends HttpServlet {
   private void example4() throws IOException {
     Person person = new Person("Fred Flinstone"); // parent
     ofy.save().entities(person).now();
+    person.getId(); // represents datastore key: Person(69)
     response.getWriter().println("person=" + person);
     
     PhoneNumber phone = new PhoneNumber(person); // child
     phone.setPhone("425-308-0000");
     ofy.save().entities(phone).now();
+    phone.getId(); // represents datastore key: Person(69)/PhoneNumber(70)
     response.getWriter().println("PhoneNumber=" + phone);
   }
   

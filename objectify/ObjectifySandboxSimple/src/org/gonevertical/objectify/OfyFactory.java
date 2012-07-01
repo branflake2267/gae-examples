@@ -1,6 +1,7 @@
 package org.gonevertical.objectify;
 
 import org.gonevertical.entities.Person;
+import org.gonevertical.entities.PhoneNumber;
 
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
@@ -13,6 +14,7 @@ public class OfyFactory extends ObjectifyFactory {
 
   public OfyFactory() {
     register(Person.class);
+    register(PhoneNumber.class);
   }
 
   @Override

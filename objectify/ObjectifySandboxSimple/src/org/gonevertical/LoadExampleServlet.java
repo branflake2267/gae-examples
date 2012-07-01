@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.gonevertical.entities.Person;
+import org.gonevertical.entities.PhoneNumber;
 import org.gonevertical.objectify.OfyFactory;
 
 import com.googlecode.objectify.Objectify;
@@ -33,6 +34,7 @@ public class LoadExampleServlet extends HttpServlet {
     example2();
     example3();
     example4();
+    example5();
   }
 
   /**
@@ -75,6 +77,27 @@ public class LoadExampleServlet extends HttpServlet {
     List<Person> list = ofy.load().type(Person.class).filter("name <=", findName + "\ufffd").list();
     for (Person person : list) {
       response.getWriter().println("itemB: person=" + person);
+    }
+  }
+  
+  /**
+   * Save a child with a parent
+   */
+  private void example5() throws IOException {
+    Person person = new Person("Fred Flinstone"); // parent
+    ofy.save().entities(person).now();
+    person.getId(); // represents datastore key: Person(69)
+    response.getWriter().println("person=" + person);
+    
+    PhoneNumber phone = new PhoneNumber(person); // child
+    phone.setPhone("425-308-0000");
+    ofy.save().entities(phone).now();
+    phone.getId(); // represents datastore key: Person(69)/PhoneNumber(70)
+    response.getWriter().println("PhoneNumber=" + phone);
+    
+    List<PhoneNumber> list = ofy.load().type(PhoneNumber.class).ancestor(person).list();
+    for (PhoneNumber item : list) {
+      response.getWriter().println("child phone=" + item);
     }
   }
   
