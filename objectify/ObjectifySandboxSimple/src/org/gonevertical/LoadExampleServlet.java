@@ -32,6 +32,7 @@ public class LoadExampleServlet extends HttpServlet {
     example1();
     example2();
     example3();
+    example4();
   }
 
   /**
@@ -62,7 +63,18 @@ public class LoadExampleServlet extends HttpServlet {
     String findName = "Brandon";
     List<Person> list = ofy.load().type(Person.class).filter("name", findName).list();
     for (Person person : list) {
-      response.getWriter().println("item: person=" + person);
+      response.getWriter().println("itemA: person=" + person);
+    }
+  }
+  
+  /**
+   * Load all with Filter using a wildcard
+   */
+  private void example4() throws IOException {
+    String findName = "Bran";
+    List<Person> list = ofy.load().type(Person.class).filter("name <=", findName + "\ufffd").list();
+    for (Person person : list) {
+      response.getWriter().println("itemB: person=" + person);
     }
   }
   
