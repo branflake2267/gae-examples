@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.gonevertical.entities.Person;
+import org.gonevertical.entities.PhoneNumber;
 import org.gonevertical.objectify.OfyFactory;
 
 import com.googlecode.objectify.Objectify;
@@ -33,6 +34,7 @@ public class SaveExampleServlet extends HttpServlet {
     example1();
     example2();
     example3();
+    example4();
   }
   
   /**
@@ -71,6 +73,20 @@ public class SaveExampleServlet extends HttpServlet {
     ofy.save().entities(people).now();
     response.getWriter().println("people.get(0)=" + people.get(0));
     response.getWriter().println("people.get(1)=" + people.get(1));
+  }
+ 
+  /**
+   * Save a child with a parent
+   */
+  private void example4() throws IOException {
+    Person person = new Person("Fred Flinstone"); // parent
+    ofy.save().entities(person).now();
+    response.getWriter().println("person=" + person);
+    
+    PhoneNumber phone = new PhoneNumber(person); // child
+    phone.setPhone("425-308-0000");
+    ofy.save().entities(phone).now();
+    response.getWriter().println("PhoneNumber=" + phone);
   }
   
 }
